@@ -53,7 +53,7 @@
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/DoseUser/DoseBuster.git && cd DoseBuster
+git clone https://github.com/Doseuser/DoseBuster.git && cd DoseBuster
 pip install -r requirements.txt
 ```
 
