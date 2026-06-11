@@ -1,5 +1,11 @@
 
-# 💣 DoseBuster
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=3000&pause=500&color=00F0FF&center=true&vCenter=true&width=600&lines=%F0%9F%92%A3+DoseBuster;El+fuzzer+que+nunca+deja+de+cavar" />
+    <source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=3000&pause=500&color=1E1E2E&center=true&vCenter=true&width=600&lines=%F0%9F%92%A3+DoseBuster;El+fuzzer+que+nunca+deja+de+cavar" />
+    <img alt="DoseBuster - The fuzzer that never stops digging" src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=3000&pause=500&color=00F0FF&center=true&vCenter=true&width=600&lines=%F0%9F%92%A3+DoseBuster;El+fuzzer+que+nunca+deja+de+cavar" />
+  </picture>
+</p>
 
 <div align="center">
 
@@ -11,111 +17,196 @@
  |____/ \___/|___/\__,_|____/ \__,_|___/\__\___|_|   
 ```
 
-**El fuzzer que nunca deja de cavar — by DoseUser**
-
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square&logo=python)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Async](https://img.shields.io/badge/Async-100%25-purple?style=flat-square)](https://docs.python.org/3/library/asyncio.html)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](CONTRIBUTING.md)
+**The fuzzer that never stops digging — by DoseUser**
 
 </div>
 
-> Enumeración recursiva inteligente de directorios y archivos, motor 100% asíncrono y capacidades que superan cualquier herramienta actual.
+<div align="center">
 
-## 🌟 Características principales
+[![Python](https://img.shields.io/badge/Python-3.8+-3B82F6?style=for-the-badge&logo=python&logoColor=white&labelColor=1E1E2E)](#)
+[![Async](https://img.shields.io/badge/Async-100%25-9B59B6?style=for-the-badge&logo=asyncio&logoColor=white&labelColor=1E1E2E)](#)
+[![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge&logo=github&logoColor=white&labelColor=1E1E2E)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-EAB308?style=for-the-badge&logo=github&logoColor=white&labelColor=1E1E2E)](CONTRIBUTING.md)
+[![Built with Fire](https://img.shields.io/badge/Built_with_%F0%9F%94%A5-DoseUser-FF4500?style=for-the-badge&labelColor=1E1E2E)](#)
 
-- **Recursión activa inmediata** – Nuevos directorios se exploran al instante sin esperar a que termine la cola actual.
-- **Enumeración dual simultánea** – Búsqueda de directorios con wordlist + fuzzing de archivos usando extensiones configurables.
-- **Motor asíncrono puro** – Construido sobre `asyncio` y `aiohttp`, conexiones reutilizables, reintentos inteligentes.
-- **Anti falsos positivos** – `auto-tune` genera un baseline contra páginas 404 para descartar respuestas basura.
-- **Persistencia y reanudación** – Archivo de estado que guarda el progreso exacto; reanuda escaneos interrumpidos sin reprocesar.
-- **Rotación de User‑Agents, proxy, rate‑limiting** – Con un scheduler justo para evitar bloqueos.
-- **Filtros avanzados** – Código de estado, tamaño, palabras, regex, similitud y lógica AND/OR.
-- **Reportes elegantes** – ASCII art, progreso interactivo en consola, exportación a JSON, CSV, Markdown y HTML.
-- **Modo Stealth** – Demoras aleatorias, fragmentación y evasión básica de WAF.
-- **Extensible** – Arquitectura modular lista para DeepInfinity, clasificador ML, fuzzing de parámetros y más.
+</div>
 
-## ⚡ Instalación
+---
+
+## ⚡ *Why DoseBuster?*
+
+> *Most fuzzers crawl linearly. DoseBuster digs recursively **in real-time** — every directory found becomes a new battlefield **immediately**, without waiting for the current job to finish. It’s like having a thousand shovel-blades hitting the server at once, but smarter.*
+
+| 💥 Feature | 🔍 DoseBuster |
+|-----------|-------------|
+| **Instant Recursion** | New directories are queued **as soon as discovered**, using an adaptive producer-consumer model |
+| **Dual Enumeration** | Simultaneous dir fuzzing + file discovery (`.bak`, `.zip`, `.git/config`, etc.) at every depth |
+| **100% Async Python** | `asyncio` + `aiohttp` — reusable connections, intelligent retries, zero overhead |
+| **False‑Positive Engine** | `--auto-tune` probes a non‑existent resource and creates a fingerprint to filter noise |
+| **Stateful Resume** | Exact progress saved to disk — stop anytime and resume without reprocessing |
+| **Stealth & Evasion** | Randomized delays, multiple User‑Agents, proxy support, jitter, and WAF‑aware path mutations |
+| **Advanced Filters** | Filter by status, size, regex, word match, similarity ratio, and combine them with **AND/OR** logic |
+| **Rich Reporting** | Live colored console, JSON, CSV, Markdown, and interactive HTML reports |
+
+---
+
+## 📦 Installation
 
 ```bash
-git clone https://github.com/DoseUser/DoseBuster.git
-cd DoseBuster
+git clone https://github.com/DoseUser/DoseBuster.git && cd DoseBuster
 pip install -r requirements.txt
 ```
 
-Requisitos: `aiohttp`, `colorama`, `pyyaml`, `jinja2` (opcional para HTML), `scikit-learn` (futuro).
+**Dependencies:**  
+[`aiohttp`](https://pypi.org/project/aiohttp/) • [`colorama`](https://pypi.org/project/colorama/) • [`pyyaml`](https://pypi.org/project/pyyaml/) • [`jinja2`](https://pypi.org/project/jinja2/) *(optional, for HTML reports)*
 
-## 🚀 Uso rápido
+---
+
+## 🚀 Quick Start
 
 ```bash
 python dosebuster.py https://example.com -w wordlist.txt -x .bak,.zip,.php -d 3 --auto-tune -c 50
 ```
 
-**Banderas principales:**
-
-| Bandera | Descripción |
-|--------|-------------|
-| `-w` | Archivo con wordlist base |
-| `-x` | Extensiones separadas por coma |
-| `-d` | Profundidad máxima de recursión |
-| `-c` | Conexiones simultáneas (concurrencia) |
-| `--auto-tune` | Detecta falsos positivos comparando con 404 |
-| `--delay` | Demora fija entre peticiones |
-| `--jitter` | Jitter aleatorio (máximo) |
-| `--stealth` | Modo sigiloso (demoras + rotación) |
-| `--resume` | Reanudar desde estado guardado |
-| `-f` | Formato de salida: `json,csv,md,html` |
-| `--filter-code` | Filtrar por códigos (ej: `200,403`) |
-| `--filter-size` | Filtrar por tamaño de respuesta |
-| `--filter-regex` | Filtrar con expresión regular |
-| `--parameter-fuzz` | Activa fuzzing de parámetros en APIs JSON |
-
-Para ver la lista completa:
-
+**See all flags:**
 ```bash
 python dosebuster.py --help
 ```
 
-## 📊 Reportes
+<details>
+<summary><b>🔍 Core Flags</b></summary>
 
-Después del escaneo se generan archivos (según formato elegido):
-- `dosebuster_report.json` – JSON completo con todos los hallazgos.
-- `dosebuster_report.csv` – CSV con directorios y archivos.
-- `dosebuster_report.md` – Tabla Markdown lista para pegar en documentación.
-- `dosebuster_report.html` – Página web interactiva (si `jinja2` está instalado).
+| Flag | Description |
+|------|-------------|
+| `-w` / `--wordlist` | Path to directory wordlist file |
+| `-x` / `--extensions` | Comma-separated extensions to append (e.g., `.bak,.zip,.php`) |
+| `-d` / `--depth` | Maximum recursion depth (default: 2) |
+| `-c` / `--concurrency` | Simultaneous async workers (default: 30) |
+| `--auto-tune` | Automatically detect and ignore custom error pages / wildcards |
+| `--filter-code` | Only show responses with given status codes (e.g., `200,403`) |
+| `--filter-size` | Only show responses with given content lengths |
+| `--filter-regex` | Filter responses matching a regular expression |
+| `--filter-words` | Filter responses containing specific words |
+| `--filter-similarity` | Keep responses whose similarity to the baseline lies within a range (e.g., `0.5,0.9`) |
+| `--filter-logic` | `and` or `or` — combine multiple filters (default: `or`) |
+| `-f` / `--format` | Comma-separated output formats: `json`, `csv`, `md`, `html` |
+| `--output` | Output file base name (default: `dosebuster_report`) |
+| `--state-file` | File to save/load scan state (resume support) |
+| `--resume` | Resume a previously interrupted scan |
+| `--stealth` | Enable randomized delays, slower pace, and avoid detection |
+| `--delay` | Fixed delay between requests (per worker) |
+| `--jitter` | Maximum random jitter added to delay |
+| `--rate-limit` | Global request-per-second cap |
+| `--proxy` | HTTP proxy (e.g., `http://127.0.0.1:8080`) |
+| `--rotate-ua` | Rotate User-Agent from a built-in list on every request |
+| `--follow-redirects` | Follow HTTP redirects |
+| `--output-all` | Print every checked URL to console, regardless of filter |
+| `--parameter-fuzz` | Enable parameter fuzzing on JSON endpoints found |
+| `--param-wordlist` | Custom wordlist for parameters (used with `--parameter-fuzz`) |
 
-## 🧠 Modo de operación
-
-1. **Baseline** (si `--auto-tune`): se pide un recurso inexistente y se analiza el comportamiento del servidor.
-2. Se inserta la URL base en la cola y los trabajadores asíncronos comienzan a probar cada entrada de la wordlist.
-3. Al detectar un directorio (código 200, 403, redirecciones, etc.) se encola inmediatamente para explorar en profundidad.
-4. En paralelo, se añaden extensiones a cada palabra base para buscar archivos.
-5. Los resultados se filtran en tiempo real; los interesantes se guardan y reportan.
-
-## 💡 Ideas disruptivas (hoja de ruta)
-
-- **DeepInfinity**: Crawling ligero de enlaces internos para descubrir rutas fuera del diccionario.
-- **Clasificador ML**: Priorizar recursión sobre respuestas con mayor potencial usando scikit‑learn.
-- **Fuzzing de parámetros acoplado**: Al detectar APIs JSON, inyecta wordlists de parámetros.
-- **Evasión de WAF**: Codificación de ruta, doble encoding, mayúsculas/minúsculas aleatorias.
-- **Integración con escáneres**: Búsqueda de secretos en `.env`, backup.sql; fuerza bruta de paneles login.
-- **Wordlist adaptativa**: Genera entradas como `v1/api` → `v2/api` basándose en hallazgos.
-- **Dashboard WebSocket**: Monitoreo en tiempo real desde el navegador.
-- **API REST interna**: Control del escaneo desde otras herramientas.
-
-## 🛡️ Lema
-
-> *“El fuzzer que nunca deja de cavar – by DoseUser”*
-
-## 👤 Créditos
-
-Creado por **DoseUser** con la misión de llevar la enumeración web al siguiente nivel.
-
-## 📜 Licencia
-
-Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+</details>
 
 ---
 
-⭐ ¡Dale una estrella al repo y contribuye con ideas para que DoseBuster nunca deje de cavar!
+## 🧠 How It Works
+
+1. **Baseline building** – If `--auto-tune` is on, DoseBuster requests a random fake path and records the server’s “not found” fingerprint.
+2. **Queue bootstrap** – The base URL enters the async queue.
+3. **Concurrent workers** – Each worker pops a directory from the queue and tests every wordlist entry + every extension against it.
+4. **Real-time recursion** – When a hit is identified (HTTP status, redirect, or custom heuristics), that directory is **immediately re-queued** with a deeper depth.
+5. **Filtering & false-positive removal** – Every response is compared to the baseline and tested against user-defined filters.
+6. **Live feedback** – The console shows request count, directories/files found, and queue size, updating in place.
+7. **Report generation** – At the end (or on interruption), all findings are exported in the chosen formats.
+
+---
+
+## 📊 Sample Report Snippets
+
+<details open>
+<summary><b>Console output</b></summary>
+
+```
+  ____                ____             _           
+ |  _ \  ___  ___  __| __ ) _   _ ___| |_ ___ _ __ 
+ | | | |/ _ \/ __|/ _  |  _ \| | | / __| __/ _ \ '__|
+ | |_| | (_) \__ \ (_| | |_) | |_| \__ \ ||  __/ |   
+ |____/ \___/|___/\__,_|____/ \__,_|___/\__\___|_|   
+                                            by DoseUser
+
+Progreso: 1242 peticiones | Directorios: 7 | Archivos: 13 | Cola: 45   
+[200] https://example.com/admin/
+[403] https://example.com/backup/
+[200] https://example.com/.git/config
+[200] https://example.com/wp-config.php.bak
+...
+```
+
+</details>
+
+<details>
+<summary><b>JSON export</b></summary>
+
+```json
+{
+  "directories": [
+    {"url": "https://example.com/admin/", "depth": 1, "status": "found"},
+    {"url": "https://example.com/api/", "depth": 1, "status": "found"}
+  ],
+  "files": [
+    {"url": "https://example.com/.env.bak", "depth": 1, "status": 200, "size": 1024},
+    {"url": "https://example.com/backup.sql.zip", "depth": 2, "status": 200, "size": 4056}
+  ]
+}
+```
+
+</details>
+
+---
+
+## 🗺️ Roadmap — Disruptive Upgrades
+
+- [ ] **DeepInfinity** – Lightweight internal crawler that follows discovered links to uncover dictionary‑less routes.
+- [ ] **ML‑powered Classifier** – Train a small scikit‑learn model on‑the‑fly to prioritize “juicy” directories.
+- [ ] **Parameter Fuzz Expansion** – Detect API endpoints (JSON content‑type) and automatically fuzz query/POST params.
+- [ ] **WAF Evasion Kit** – URL encoding tricks, double encoding, upper/lower case randomization, truncation.
+- [ ] **Secret Extractor** – On finding `.env`, `backup.sql`, etc., launch regex‑based secret mining.
+- [ ] **Default Credential Attack** – If a login form is found, try common/default credentials.
+- [ ] **Predictive Wordlist** – Dynamically generate variations (e.g., `v1/api` → `v2/api`, `v3/api`).
+- [ ] **Live WebSocket Dashboard** – Monitor scan progress from a browser in real time.
+- [ ] **Internal REST API** – Pause, resume, modify wordlists on the fly, and stream results to other tools.
+- [ ] **Multi‑IP Stealth** – Bind workers to different network interfaces for IP rotation.
+
+---
+
+## 🤝 Contributing
+
+> *DoseBuster is crafted to be the ultimate enumeration tool. Have an idea for a disruptive feature? Open an issue or a PR — let’s make it happen.*
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-idea`)
+3. Commit your changes (`git commit -m 'Add amazing idea'`)
+4. Push to the branch (`git push origin feature/amazing-idea`)
+5. Open a Pull Request
+
+---
+
+## 👤 Author
+
+**DoseUser** — cybersecurity craftsman, builder of the fuzzer that never stops digging.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+### ⭐ Don’t forget to star the repo if you like it!
+
+*Made with 💣 and async love*
+
+</div>
 ```
